@@ -1,5 +1,7 @@
 package com.ecom.webpay.api.resources;
 
+import com.ecom.webpay.api.mapping.InitTransactionOutputMap;
+import com.ecom.webpay.api.models.InitTransactionOutputModel;
 import com.ecom.webpay.services.WebpayTransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebpayPlusNormalController {
 
     @Autowired private WebpayTransactionService webpayTransactionService;
+    @Autowired private InitTransactionOutputMap initTransactionOutputMap;
 
     @RequestMapping(value = "/initTransactionOutput", method = RequestMethod.GET)
-    public void initTransactionOutput(){
-        webpayTransactionService.initTransactionOutput();
+    public InitTransactionOutputModel initTransactionOutput(){
+        return initTransactionOutputMap.toModel(webpayTransactionService.getInitTransactionOutputIntegration());
     }
 }

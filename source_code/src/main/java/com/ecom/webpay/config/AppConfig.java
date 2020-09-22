@@ -17,11 +17,15 @@ public class AppConfig {
 
     @NotEmpty
     @Value("${webpay.environment.production}")
-    private boolean wpIsProducttionEnv;
+    private boolean wpIsProductionEnv;
 
     @NotEmpty
     @Value("${webpay.return_url}")
     private String wpReturnUrl;
+
+    @NotEmpty
+    @Value("${webpay.web.result_url}")
+    private String wpWebResultUrl;
 
     @NotEmpty
     @Value("${webpay.final_url}")

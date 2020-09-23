@@ -16,10 +16,6 @@ import javax.validation.constraints.NotEmpty;
 public class AppConfig {
 
     @NotEmpty
-    @Value("${webpay.environment.production}")
-    private boolean wpIsProductionEnv;
-
-    @NotEmpty
     @Value("${webpay.return_url}")
     private String wpReturnUrl;
 
@@ -30,6 +26,14 @@ public class AppConfig {
     @NotEmpty
     @Value("${webpay.final_url}")
     private String wpFinalUrl;
+
+    @NotEmpty
+    @Value("${webpay.rsa_private_key}")
+    private String wpPrivateKey;
+
+    @NotEmpty
+    @Value("${webpay..certificate}")
+    private String wpPublicCert;
 
     @NotEmpty
     @Value("${webpay.plus.commerce_code}")

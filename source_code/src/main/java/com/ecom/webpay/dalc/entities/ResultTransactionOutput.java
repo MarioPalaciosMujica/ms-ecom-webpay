@@ -9,15 +9,15 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "tbl_result_outputs")
+@Table(name = "tbl_result_transaction_outputs")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResultOutput {
+public class ResultTransactionOutput {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_result_output", updatable = false, nullable = false, unique = true)
-    private Long idResultOutput;
+    @Column(name = "id_result_transaction_output", updatable = false, nullable = false, unique = true)
+    private Long idResultTransactionOutput;
 
     @Column(name = "buy_order")
     @Size(max = 26)
@@ -32,7 +32,6 @@ public class ResultOutput {
     private String accountingDate;
 
     @Column(name = "transaction_date")
-    //@Size(max = 10)
     private String transactionDate;
 
     @Column(name = "vci")
@@ -54,12 +53,12 @@ public class ResultOutput {
     private Date created;
 
 
-    public Long getIdResultOutput() {
-        return idResultOutput;
+    public Long getIdResultTransactionOutput() {
+        return idResultTransactionOutput;
     }
 
-    public void setIdResultOutput(Long idResultOutput) {
-        this.idResultOutput = idResultOutput;
+    public void setIdResultTransactionOutput(Long idResultTransactionOutput) {
+        this.idResultTransactionOutput = idResultTransactionOutput;
     }
 
     public String getBuyOrder() {

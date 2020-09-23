@@ -1,8 +1,8 @@
 package com.ecom.webpay.services;
 
 import com.ecom.webpay.dalc.entities.DetailOutput;
-import com.ecom.webpay.dalc.entities.ResultOutput;
-import com.ecom.webpay.dalc.repositories.IResultOutputRepository;
+import com.ecom.webpay.dalc.entities.ResultTransactionOutput;
+import com.ecom.webpay.dalc.repositories.IResultTransactionOutputRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,23 +12,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ResultOutputService {
+public class ResultTransactionOutputService {
 
-    @Autowired private IResultOutputRepository resultOutputRepository;
+    @Autowired private IResultTransactionOutputRepository resultOutputRepository;
 
-    public ResultOutput save(@NotNull ResultOutput entity){
-        entity.setIdResultOutput(null);
+    public ResultTransactionOutput save(@NotNull ResultTransactionOutput entity){
+        entity.setIdResultTransactionOutput(null);
         entity.setCreated(new Date());
         for (DetailOutput detailOutput : entity.getDetailsOutput()){
             detailOutput.setIdDetailOutput(null);
-            detailOutput.setResultOutput(entity);
+            detailOutput.setResultTransactionOutput(entity);
         }
         entity = resultOutputRepository.save(entity);
         return entity;
     }
 
-    public ResultOutput findById(@NotNull Long id){
-        Optional<ResultOutput> entity = resultOutputRepository.findById(id);
+    public ResultTransactionOutput findById(@NotNull Long id){
+        Optional<ResultTransactionOutput> entity = resultOutputRepository.findById(id);
         if(entity.isPresent()){
             return entity.get();
         }
@@ -37,7 +37,7 @@ public class ResultOutputService {
         }
     }
 
-    public List<ResultOutput> findAll(){
+    public List<ResultTransactionOutput> findAll(){
         return resultOutputRepository.findAll();
     }
 

@@ -27,7 +27,6 @@ public class DetailOutput {
     private String paymentTypeCode;
 
     @Column(name = "response_code")
-    //@Size(max = 5)
     private Integer responseCode;
 
     @Column(name = "amount")
@@ -46,7 +45,7 @@ public class DetailOutput {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_result_output")
-    private ResultOutput resultOutput;
+    private ResultTransactionOutput resultTransactionOutput;
 
 
     public Long getIdDetailOutput() {
@@ -113,11 +112,11 @@ public class DetailOutput {
         this.buyOrder = buyOrder;
     }
 
-    public ResultOutput getResultOutput() {
-        return resultOutput;
+    public ResultTransactionOutput getResultTransactionOutput() {
+        return resultTransactionOutput;
     }
 
-    public void setResultOutput(ResultOutput resultOutput) {
-        this.resultOutput = resultOutput;
+    public void setResultTransactionOutput(ResultTransactionOutput resultTransactionOutput) {
+        this.resultTransactionOutput = resultTransactionOutput;
     }
 }

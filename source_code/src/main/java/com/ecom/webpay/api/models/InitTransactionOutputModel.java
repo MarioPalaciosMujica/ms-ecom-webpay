@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class InitOutputModel {
+public class InitTransactionOutputModel {
 
     @JsonProperty("formAction")
     private String formAction;

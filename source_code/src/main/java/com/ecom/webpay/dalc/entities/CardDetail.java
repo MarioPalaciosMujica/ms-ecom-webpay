@@ -26,7 +26,7 @@ public class CardDetail {
     private String cardExpirationDate;
 
     @OneToOne(mappedBy = "cardDetail")
-    private ResultOutput resultOutput;
+    private ResultTransactionOutput resultTransactionOutput;
 
 
     public Long getIdCardDetail() {
@@ -53,11 +53,11 @@ public class CardDetail {
         this.cardExpirationDate = cardExpirationDate;
     }
 
-    public ResultOutput getResultOutput() {
-        return resultOutput;
+    public ResultTransactionOutput getResultTransactionOutput() {
+        return resultTransactionOutput;
     }
 
-    public void setResultOutput(ResultOutput resultOutput) {
-        this.resultOutput = resultOutput;
+    public void setResultTransactionOutput(ResultTransactionOutput resultTransactionOutput) {
+        this.resultTransactionOutput = resultTransactionOutput;
     }
 }

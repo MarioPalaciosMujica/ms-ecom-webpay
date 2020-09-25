@@ -47,6 +47,16 @@ public class DateFormat {
         }
     }
 
+    public Date xmlGregorianToDate(XMLGregorianCalendar xmlCalendar){
+        if(xmlCalendar != null){
+            GregorianCalendar gregorianCalendar = xmlCalendar.toGregorianCalendar();
+            return gregorianCalendar.getTime();
+        }
+        else {
+            return null;
+        }
+    }
+
     public String xmlGregorianToString(XMLGregorianCalendar xmlCalendar){
         if(xmlCalendar != null){
             GregorianCalendar gregorianCalendar = xmlCalendar.toGregorianCalendar();

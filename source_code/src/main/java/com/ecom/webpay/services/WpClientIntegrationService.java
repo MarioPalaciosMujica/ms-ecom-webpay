@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 @Service
@@ -47,12 +48,13 @@ public class WpClientIntegrationService {
         }
     }
 
-    public ResultTransactionOutput getTransactionResult(@NotNull String tokenWs){
+    public ResultTransactionMessage getTransactionResult(@NotNull String tokenWs){
         try{
             WebpayNormal transaction = getWpPlusNormal(getConfiguration());
             TransactionResultOutput result = transaction.getTransactionResult(tokenWs);
             ResultTransactionOutput resultTransactionOutput = this.getWebpayResult(result);
-            return resultTransactionOutputService.save(resultTransactionOutput);
+            resultTransactionOutput = resultTransactionOutputService.save(resultTransactionOutput);
+            return getResultMessage(resultTransactionOutput);
         }
         catch (Exception ex){
             logErrorService.save(new LogError("WpClientIntegrationService.getTransactionResult()", ex.toString()));
@@ -73,7 +75,7 @@ public class WpClientIntegrationService {
         resultTransactionOutput.setBuyOrder(result.getBuyOrder());
         resultTransactionOutput.setSessionId(result.getSessionId());
         resultTransactionOutput.setAccountingDate(result.getAccountingDate());
-        resultTransactionOutput.setTransactionDate(dateFormat.xmlGregorianToString(result.getTransactionDate()));
+        resultTransactionOutput.setTransactionDate(dateFormat.xmlGregorianToDate(result.getTransactionDate()));
         resultTransactionOutput.setVci(result.getVCI());
         resultTransactionOutput.setUrlRedirection(result.getUrlRedirection());
         resultTransactionOutput.setCardDetail(
@@ -98,6 +100,16 @@ public class WpClientIntegrationService {
             resultTransactionOutput.getDetailsOutput().add(newDetail);
         }
         return resultTransactionOutput;
+    }
+
+    private ResultTransactionMessage getResultMessage(ResultTransactionOutput resultOutput){
+        return new ResultTransactionMessage(
+                resultOutput.getBuyOrder(),
+                resultOutput.getIdResultTransactionOutput(),
+                resultOutput.getTransactionDate(),
+                new ArrayList<>(resultOutput.getDetailsOutput()).get(0).getResponseCode().toString(),
+                "WP_PLUS"
+        );
     }
 
 }

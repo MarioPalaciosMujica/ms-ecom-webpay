@@ -32,7 +32,7 @@ public class ResultTransactionOutput {
     private String accountingDate;
 
     @Column(name = "transaction_date")
-    private String transactionDate;
+    private Date transactionDate;
 
     @Column(name = "vci")
     @Size(max = 10)
@@ -85,11 +85,11 @@ public class ResultTransactionOutput {
         this.accountingDate = accountingDate;
     }
 
-    public String getTransactionDate() {
+    public Date getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(String transactionDate) {
+    public void setTransactionDate(Date transactionDate) {
         this.transactionDate = transactionDate;
     }
 

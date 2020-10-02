@@ -20,8 +20,12 @@ public class AppConfig {
     private String wpReturnUrl;
 
     @NotEmpty
-    @Value("${webpay.web.result_url}")
-    private String wpWebResultUrl;
+    @Value("${webpay.ecom_order_endpoint}")
+    private String ecomOrderEndpoint;
+
+    @NotEmpty
+    @Value("${webpay.ui.return_url}")
+    private String wpUiReturnUrl;
 
     @NotEmpty
     @Value("${webpay.final_url}")

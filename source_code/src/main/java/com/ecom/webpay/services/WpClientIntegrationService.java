@@ -26,6 +26,7 @@ public class WpClientIntegrationService {
     @Autowired private AppConfig appConfig;
     @Autowired private DateFormat dateFormat;
     @Autowired private LogErrorService logErrorService;
+    @Autowired private EcomOrderService ecomOrderService;
 
     public InitTransactionOutput getInitTransaction(BuyOrder buyOrder){
         try{
@@ -48,13 +49,16 @@ public class WpClientIntegrationService {
         }
     }
 
-    public ResultTransactionMessage getTransactionResult(@NotNull String tokenWs){
+    public String getTransactionResult(@NotNull String tokenWs){
         try{
             WebpayNormal transaction = getWpPlusNormal(getConfiguration());
             TransactionResultOutput result = transaction.getTransactionResult(tokenWs);
             ResultTransactionOutput resultTransactionOutput = this.getWebpayResult(result);
             resultTransactionOutput = resultTransactionOutputService.save(resultTransactionOutput);
-            return getResultMessage(resultTransactionOutput);
+            //return getResultMessage(resultTransactionOutput);
+            ecomOrderService.sendResultTransaction(this.getResultMessage(resultTransactionOutput));
+            return resultTransactionOutput.getBuyOrder();
+
         }
         catch (Exception ex){
             logErrorService.save(new LogError("WpClientIntegrationService.getTransactionResult()", ex.toString()));

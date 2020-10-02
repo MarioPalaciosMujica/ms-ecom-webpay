@@ -46,7 +46,7 @@ public class ResultTransactionOutput {
     @JoinColumn(name = "id_card_detail", referencedColumnName = "id_card_detail")
     private CardDetail cardDetail;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "resultOutput", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "resultTransactionOutput", cascade = CascadeType.ALL)
     private Set<DetailOutput> detailsOutput;
 
     @Column(name = "created", nullable = false)

@@ -3,7 +3,6 @@ package com.ecom.webpay.services;
 import com.ecom.webpay.api.mapping.ResultTransactionMessageMap;
 import com.ecom.webpay.api.models.ResultTransactionMessageModel;
 import com.ecom.webpay.config.AppConfig;
-import com.ecom.webpay.dalc.entities.LogError;
 import com.ecom.webpay.dalc.entities.ResultTransactionMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

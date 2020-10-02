@@ -58,7 +58,6 @@ public class WpClientIntegrationService {
             //return getResultMessage(resultTransactionOutput);
             ecomOrderService.sendResultTransaction(this.getResultMessage(resultTransactionOutput));
             return resultTransactionOutput.getBuyOrder();
-
         }
         catch (Exception ex){
             logErrorService.save(new LogError("WpClientIntegrationService.getTransactionResult()", ex.toString()));
